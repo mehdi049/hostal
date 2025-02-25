@@ -19,6 +19,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../ui/sidebar";
+import { Logo } from "../icons/logo";
 
 export const AppSidebar = () => {
   const items = [
@@ -67,20 +68,25 @@ export const AppSidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader />
-      <SidebarContent>
+      <SidebarContent className="px-2">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title} className="h-11">
-                  <SidebarMenuButton asChild>
-                    <a href={item.url} className="font-medium">
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu className="space-y-4">
+              <SidebarMenuItem>
+                <Logo />
+              </SidebarMenuItem>
+              <div>
+                {items.map((item) => (
+                  <SidebarMenuItem key={item.title} className="h-11">
+                    <SidebarMenuButton asChild>
+                      <a href={item.url} className="opacity-80">
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </div>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

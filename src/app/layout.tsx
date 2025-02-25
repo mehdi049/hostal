@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/dashboard-sidebar";
+import { DashboardHeader } from "@/components/dashboard-header";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,13 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased font-[family-name:var(--font-inter)] bg-sidebar`}
+        className={`${inter.variable} antialiased font-[family-name:var(--font-inter)] bg-sidebar text-sm`}
       >
         <SidebarProvider>
           <AppSidebar />
-          <main className="bg-background m-4 p-4 w-full rounded-xl">
-            <SidebarTrigger />
-            {children}
+          <main className="bg-background m-4 w-full rounded-xl">
+            <DashboardHeader />
+            <div className="p-4">{children}</div>
           </main>
         </SidebarProvider>
       </body>
