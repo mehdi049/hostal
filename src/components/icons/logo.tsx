@@ -1,6 +1,6 @@
 export const Logo = () => {
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex items-center gap-4">
       <svg
         width="51"
         height="56"
@@ -46,7 +46,7 @@ export const Logo = () => {
         />
       </svg>
 
-      <span className="font-medium text-3xl">HOSTAL</span>
+      <span className="text-3xl font-medium tracking-widest">HOSTAL</span>
     </div>
-  );
-};
+  )
+}
