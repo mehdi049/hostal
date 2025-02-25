@@ -4,6 +4,7 @@ import './globals.css'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/dashboard-sidebar'
 import { DashboardHeader } from '@/components/dashboard-header'
+import { DashboardFooter } from '@/components/dashboard-footer'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -28,9 +29,10 @@ export default function RootLayout({
       >
         <SidebarProvider>
           <AppSidebar />
-          <main className="m-4 w-full rounded-xl bg-background">
+          <main className="m-4 flex w-full flex-col justify-between rounded-xl bg-background">
             <DashboardHeader />
-            <div className="p-4">{children}</div>
+            <div className="grow bg-gray-50 p-4">{children}</div>
+            <DashboardFooter />
           </main>
         </SidebarProvider>
       </body>
