@@ -128,11 +128,6 @@ export const AppSidebar = () => {
       url: '#',
       icon: Settings,
     },
-    {
-      title: 'NOUVEAU TRANSPORT',
-      url: '#',
-      icon: Heart,
-    },
   ]
 
   return (
@@ -213,6 +208,14 @@ export const AppSidebar = () => {
                   </SidebarMenuItem>
                 ))}
               </div>
+
+              <Button
+                variant="outlineDestructive"
+                className="w-full rounded-md font-bold"
+              >
+                <Heart />
+                NOUVEAU TRANSPORT
+              </Button>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
