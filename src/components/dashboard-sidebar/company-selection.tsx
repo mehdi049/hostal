@@ -59,9 +59,7 @@ export const CompanySelection = ({ isCollapsed }: CompanySelectionProps) => {
       <PopoverTrigger asChild>
         <div
           aria-expanded={open}
-          className={
-            'flex h-14 items-center justify-between rounded-xl border border-transparent p-2 hover:border-white/50 hover:bg-sidebar-accent/20 hover:text-sidebar-accent-foreground'
-          }
+          className={`flex h-14 items-center justify-between rounded-xl border border-transparent p-2 ${!isCollapsed ? 'hover:border-white/50 hover:bg-sidebar-accent/20' : ''} hover:text-sidebar-accent-foreground`}
         >
           {value
             ? companies.find((company) => company.value === value)?.label
