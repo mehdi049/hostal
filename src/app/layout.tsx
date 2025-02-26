@@ -29,10 +29,14 @@ export default function RootLayout({
       >
         <SidebarProvider>
           <AppSidebar />
-          <main className="m-4 flex w-full flex-col justify-between rounded-xl bg-background">
-            <DashboardHeader />
+          <main className="m-4 flex w-full flex-col justify-between overflow-x-hidden rounded-xl bg-background">
+            <div className="overflow-auto">
+              <DashboardHeader />
+            </div>
             <div className="grow bg-gray-50 p-4">{children}</div>
-            <DashboardFooter />
+            <div className="overflow-auto">
+              <DashboardFooter />
+            </div>
           </main>
         </SidebarProvider>
       </body>
