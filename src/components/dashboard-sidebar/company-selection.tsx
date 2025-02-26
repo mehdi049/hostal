@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import {
   Command,
   CommandEmpty,
@@ -8,127 +8,51 @@ import {
   CommandList,
 } from '../ui/command'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Check, ChevronsUpDown } from 'lucide-react'
+import { CompanyLabel } from './company-label'
+
+type SelectOption = {
+  value: string
+  label: JSX.Element
+}
 
 interface CompanySelectionProps {
   isCollapsed: boolean
 }
 export const CompanySelection = ({ isCollapsed }: CompanySelectionProps) => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState('HADJAL')
-  const [companies, setCompanies] = useState([
-    {
-      value: 'HADJAL',
-      label: (
-        <div className="flex items-center justify-between gap-2">
-          <div className="w-10">
-            <Image
-              src="/logo-ambulance.svg"
-              width={isCollapsed ? 30 : 40}
-              height={isCollapsed ? 30 : 40}
-              alt="HADJAL IDIR"
-              className="rounded-full"
-            />
-          </div>
-          {!isCollapsed && (
-            <div className="space-y-1">
-              <span className="block text-left text-xs font-medium uppercase">
-                HADJAL IDIR
-              </span>
-              <span className="block text-left text-xs text-white/80">
-                Prince Ambulances SAS
-              </span>
-            </div>
-          )}
-        </div>
-      ),
-    },
-    {
-      value: 'HADJAL2',
-      label: (
-        <div className="flex items-center justify-between gap-2">
-          <div className="w-10">
-            <Image
-              src="/logo-ambulance.svg"
-              width={isCollapsed ? 30 : 40}
-              height={isCollapsed ? 30 : 40}
-              alt="HADJAL IDIR"
-              className="rounded-full"
-            />
-          </div>
-          {!isCollapsed && (
-            <div className="space-y-1">
-              <span className="block text-left text-xs font-medium uppercase">
-                HADJAL IDIR
-              </span>
-              <span className="block text-left text-xs text-white/80">
-                Prince Ambulances SAS
-              </span>
-            </div>
-          )}
-        </div>
-      ),
-    },
-  ])
+  const [value, setValue] = useState<string | undefined>('HADJAL')
+  const [companies, setCompanies] = useState<SelectOption[] | undefined>(
+    undefined
+  )
 
   useEffect(() => {
     setCompanies([
       {
         value: 'HADJAL',
         label: (
-          <div className="flex items-center justify-between gap-2">
-            <div className="w-10">
-              <Image
-                src="/logo-ambulance.svg"
-                width={isCollapsed ? 30 : 40}
-                height={isCollapsed ? 30 : 40}
-                alt="HADJAL IDIR"
-                className="rounded-full"
-              />
-            </div>
-            {!isCollapsed && (
-              <div className="space-y-1">
-                <span className="block text-left text-xs font-medium uppercase">
-                  HADJAL IDIR
-                </span>
-                <span className="block text-left text-xs">
-                  Prince Ambulances SAS
-                </span>
-              </div>
-            )}
-          </div>
+          <CompanyLabel
+            name={'HADJAL IDIR'}
+            description={'Prince Ambulances SAS'}
+            isCollapsed={isCollapsed}
+          />
         ),
       },
       {
         value: 'HADJAL2',
         label: (
-          <div className="flex items-center justify-between gap-2">
-            <div className="w-10">
-              <Image
-                src="/logo-ambulance.svg"
-                width={isCollapsed ? 30 : 40}
-                height={isCollapsed ? 30 : 40}
-                alt="HADJAL IDIR"
-                className="rounded-full"
-              />
-            </div>
-            {!isCollapsed && (
-              <div className="space-y-1">
-                <span className="block text-left text-xs font-medium uppercase">
-                  HADJAL IDIR
-                </span>
-                <span className="block text-left text-xs">
-                  Prince Ambulances SAS
-                </span>
-              </div>
-            )}
-          </div>
+          <CompanyLabel
+            name={'HADJAL IDIR'}
+            description={'Prince Ambulances SAS'}
+            isCollapsed={isCollapsed}
+          />
         ),
       },
     ])
   }, [isCollapsed])
+
+  if (!companies) return null
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -150,7 +74,6 @@ export const CompanySelection = ({ isCollapsed }: CompanySelectionProps) => {
           <CommandInput
             placeholder="Choisissez une ambulance..."
             className="h-9"
-            value=""
           />
           <CommandList>
             <CommandEmpty>Aucune ambulance trouvée.</CommandEmpty>
