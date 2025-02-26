@@ -1,13 +1,4 @@
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Point } from '@/components/ui/point'
 import {
   Table,
   TableHeader,
@@ -17,6 +8,7 @@ import {
   TableCell,
 } from '@/components/ui/table'
 import { Ambulance, ArrowRightCircle, Car } from 'lucide-react'
+import { Filters } from './_components/filters'
 
 export default function Home() {
   const data = [
@@ -82,7 +74,7 @@ export default function Home() {
       rdv_lieu: 'MONTROUGE',
       vehicule: {
         matricule: 'VS-123-DZ',
-        type: 'car',
+        type: 'ambulance',
       },
       ch: '112',
       eq: '25',
@@ -92,62 +84,7 @@ export default function Home() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-2 sm:px-4 xl:px-8">
-        <FilterItem>
-          <span>Tous</span> <span>(43)</span>
-        </FilterItem>
-        <FilterItem className="text-secondary">
-          <Point backgroundColor="bg-secondary" />A Réguler
-        </FilterItem>
-        <FilterItem className="text-destructive">
-          <Point backgroundColor="bg-destructive" />
-          Annulé
-        </FilterItem>
-        <FilterItem className="text-[#FFBBC2]">
-          <Point backgroundColor="bg-[#FFBBC2]" />
-          En cours
-        </FilterItem>
-        <FilterItem className="text-success">
-          <Point backgroundColor="bg-success" />
-          Terminé
-        </FilterItem>
-        <FilterItem className="text-[#A32FFF]">
-          <Point backgroundColor="bg-[#A32FFF]" />
-          Attribué
-        </FilterItem>
-        <FilterItem className="text-[#FEAD34]">
-          <Point backgroundColor="bg-[#FEAD34]" />
-          Bourse
-        </FilterItem>
-        <FilterItem className="text-[#4951FF]">
-          <Point backgroundColor="bg-[#4951FF]" />
-          Nouveau
-        </FilterItem>
-        <FilterItem>
-          <Car className="text-secondary" />
-          <span className="text-[#FEAD34]">VSL</span>
-        </FilterItem>
-        <FilterItem>
-          <Ambulance className="text-secondary" />
-          <span className="text-[#4951FF]">AMB</span>
-        </FilterItem>
-        <Select>
-          <SelectTrigger className="w-[118px]">
-            <SelectValue placeholder="Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        <Input placeholder="Rechercher" className="w-[118px]" />
-      </div>
+      <Filters />
 
       <Table>
         <TableHeader>
@@ -189,7 +126,17 @@ export default function Home() {
               <TableCell>{item.dep_lieu}</TableCell>
               <TableCell>{item.rdv}</TableCell>
               <TableCell>{item.rdv_lieu}</TableCell>
-              <TableCell>{item.vehicule.matricule}</TableCell>
+              <TableCell>
+                <div className="flex items-center gap-1">
+                  {item.vehicule.type === 'car' && (
+                    <Car className="text-secondary" />
+                  )}
+                  {item.vehicule.type === 'ambulance' && (
+                    <Ambulance className="text-secondary" />
+                  )}
+                  {item.vehicule.matricule}
+                </div>
+              </TableCell>
               <TableCell>{item.ch}</TableCell>
               <TableCell className="text-destructive">{item.eq}</TableCell>
               <TableCell>{item.raison}</TableCell>
@@ -198,31 +145,5 @@ export default function Home() {
         </TableBody>
       </Table>
     </div>
-  )
-}
-
-interface FilterItemProps {
-  className?: string
-  children?: React.ReactNode
-}
-export const FilterItem = ({ className, children }: FilterItemProps) => {
-  return (
-    <div
-      className={`flex w-full max-w-20 flex-col items-center justify-center gap-1 rounded-xl border-2 border-[#DEE0F3] p-1 text-xs font-bold ${className}`}
-    >
-      {children}
-    </div>
-  )
-}
-
-interface PointProps {
-  className?: string
-  backgroundColor?: string
-}
-export const Point = ({ className, backgroundColor }: PointProps) => {
-  return (
-    <span
-      className={`inline-block h-3 w-3 rounded-full ${backgroundColor} ${className}`}
-    ></span>
   )
 }
