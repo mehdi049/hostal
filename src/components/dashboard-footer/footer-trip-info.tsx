@@ -7,7 +7,7 @@ interface TripInfoProps {
 }
 export const TripInfo = ({ trip }: TripInfoProps) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 border-x-2 border-gray-200 px-4">
       <div className="flex items-center justify-between gap-2 rounded-md bg-secondary/10 px-2">
         <Clock5 size="15px" className="text-secondary" />
         <p>

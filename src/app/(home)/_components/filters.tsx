@@ -14,7 +14,7 @@ import { FilterItem } from './filter-item'
 
 export const Filters = () => {
   return (
-    <div className="flex min-w-[1250px] flex-wrap items-center justify-between gap-2 sm:px-4 xl:px-8">
+    <div className="flex min-w-[1250px] flex-wrap items-center justify-between gap-2 2xl:px-8">
       <FilterItem>
         <span>Tous</span> <span>(43)</span>
       </FilterItem>
