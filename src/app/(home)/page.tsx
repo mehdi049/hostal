@@ -9,9 +9,10 @@ import {
 } from '@/components/ui/table'
 import { Ambulance, ArrowRightCircle, Car } from 'lucide-react'
 import { Filters } from './_components/filters'
+import { Planning } from '@/types/planning.types'
 
 export default function Home() {
-  const data = [
+  const plannings: Planning[] = [
     {
       e: 'green',
       t: 'right',
@@ -104,7 +105,7 @@ export default function Home() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item, key) => (
+          {plannings.map((item, key) => (
             <TableRow key={key}>
               <TableCell>
                 {item.e.toLowerCase() === 'green' && (
