@@ -10,10 +10,9 @@ export const DashboardFooter = () => {
             <User />
             <div>
               <p className="font-bold">
-                <span className="font-normal text-destructive">Mme</span>{' '}
-                Haidara THIERNO
+                <span className="text-destructive">Mme</span> Haidara THIERNO
               </p>
-              <p className="text-xs">Né le 10/11/1987 (34ans)</p>
+              <p className="text-xs italic">Né le 10/11/1987 (34ans)</p>
             </div>
           </div>
           <div>
